@@ -12,8 +12,15 @@ defineProps<{ pokemon: Pokemon }>();
     ></v-img>
     <v-card-title>{{ pokemon.name }}</v-card-title>
     <v-card-subtitle>{{ pokemon.type }}</v-card-subtitle>
-    <v-card-actions>
-      <v-btn>Ver detalhes</v-btn>
+    <v-card-actions class="actions">
+      <v-btn color="info" variant="tonal"> Ver detalhes </v-btn>
     </v-card-actions>
   </v-card>
 </template>
+
+<style scoped>
+.actions {
+  display: flex;
+  justify-content: end;
+}
+</style>
