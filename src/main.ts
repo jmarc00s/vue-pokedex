@@ -1,5 +1,7 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
+import { VueQueryPlugin } from 'vue-query';
+import type { VueQueryPluginOptions } from 'vue-query';
 
 import App from './App.vue';
 import router from './router';
@@ -18,10 +20,21 @@ const vuetify = createVuetify({
   directives,
 });
 
+const vueQueryPluginOptions: VueQueryPluginOptions = {
+  queryClientConfig: {
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+      },
+    },
+  },
+};
+
 const app = createApp(App);
 
 app.use(createPinia());
 app.use(router);
 app.use(vuetify);
+app.use(VueQueryPlugin, vueQueryPluginOptions);
 
 app.mount('#app');

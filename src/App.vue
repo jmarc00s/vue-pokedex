@@ -5,7 +5,9 @@ import { RouterView } from 'vue-router';
 <template>
   <v-layout>
     <v-app-bar color="info">
-      <v-app-bar-title>Vue pokedex</v-app-bar-title>
+      <v-app-bar-title>
+        <RouterLink class="brand" to="/">Vue pokedex</RouterLink>
+      </v-app-bar-title>
     </v-app-bar>
     <v-main>
       <v-container>
@@ -15,4 +17,9 @@ import { RouterView } from 'vue-router';
   </v-layout>
 </template>
 
-<style scoped></style>
+<style scoped>
+.brand {
+  text-decoration: none;
+  color: inherit;
+}
+</style>
