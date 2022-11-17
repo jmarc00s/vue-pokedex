@@ -2,6 +2,7 @@
 import type { Pokemon } from '@/interfaces/pokemon';
 import { onMounted, ref } from 'vue';
 import { getPokemonsPaged } from '@/core/services/pokemon';
+import PokemonList from '@/components/PokemonList.vue';
 
 const pokemons = ref<Pokemon[]>([]);
 
@@ -16,5 +17,5 @@ onMounted(async () => {
 </script>
 <template>
   <h1 class="text-center text-h6">Welcome to Vue Pokedex</h1>
-  <p v-for="pokemon in pokemons" :key="pokemon.id">{{ pokemon.name }}</p>
+  <PokemonList :pokemons="pokemons"></PokemonList>
 </template>
