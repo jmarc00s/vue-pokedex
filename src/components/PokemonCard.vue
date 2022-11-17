@@ -5,7 +5,15 @@ defineProps<{ pokemon: Pokemon }>();
 </script>
 
 <template>
-  <div>
-    {{ pokemon.name }}
-  </div>
+  <v-card>
+    <v-img
+      :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`"
+      height="300"
+    ></v-img>
+    <v-card-title>{{ pokemon.name }}</v-card-title>
+    <v-card-subtitle>{{ pokemon.type }}</v-card-subtitle>
+    <v-card-actions>
+      <v-btn>Ver detalhes</v-btn>
+    </v-card-actions>
+  </v-card>
 </template>

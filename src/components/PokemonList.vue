@@ -18,6 +18,7 @@ defineProps<{ pokemons: Pokemon[] }>();
 <style scoped>
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(4, auto);
+  gap: 1rem;
 }
 </style>
