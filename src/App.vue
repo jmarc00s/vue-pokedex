@@ -4,7 +4,9 @@ import { RouterView } from 'vue-router';
 
 <template>
   <v-layout>
-    <v-app-bar color="gray-lighten-2"></v-app-bar>
+    <v-app-bar color="primary">
+      <v-app-bar-title>Vue pokedex</v-app-bar-title>
+    </v-app-bar>
     <v-main>
       <v-container>
         <RouterView />
