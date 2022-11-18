@@ -17,3 +17,8 @@ export async function getPokemonsPaged(
 
   return data;
 }
+
+export async function getPokemon(id: string): Promise<Pokemon> {
+  const { data } = await axios<Pokemon>(`/pokemon/${id}`);
+  return data;
+}

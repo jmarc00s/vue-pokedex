@@ -2,7 +2,10 @@
 import type { Pokemon } from '@/interfaces/pokemon';
 import { useRouter } from 'vue-router';
 
-defineProps<{ pokemon: Pokemon }>();
+defineProps<{
+  pokemon: Pokemon;
+  showDetailLink: boolean;
+}>();
 
 const router = useRouter();
 
@@ -21,6 +24,7 @@ function handleDetailClick(id: string) {
     <v-card-subtitle>{{ pokemon.type }}</v-card-subtitle>
     <v-card-actions class="actions">
       <v-btn
+        v-if="showDetailLink"
         color="info"
         variant="tonal"
         @click="handleDetailClick(pokemon.id)"

@@ -11,6 +11,7 @@ defineProps<{ pokemons: Pokemon[] }>();
       v-for="pokemon in pokemons"
       :key="pokemon.id"
       :pokemon="pokemon"
+      show-detail-link
     ></PokemonCard>
   </section>
 </template>
