@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import PokemonCard from '@/components/PokemonCard.vue';
+import PokemonTable from '@/components/PokemonTable.vue';
+
 import { getPokemon } from '@/core/services/pokemon';
 import { useQuery } from 'vue-query';
 import { useRoute } from 'vue-router';
@@ -18,10 +20,10 @@ const { isLoading, error, data } = useQuery('pokemonById', () =>
     <div v-if="data">
       <v-row>
         <v-col>
-          <PokemonCard :pokemon="data" :show-detail-link="false"></PokemonCard>
+          <PokemonCard :pokemon="data" :show-detail-link="false" />
         </v-col>
         <v-col>
-          <pre>{{ JSON.stringify(data, null, 2) }}</pre>
+          <PokemonTable :pokemon="data" />
         </v-col>
       </v-row>
     </div>
