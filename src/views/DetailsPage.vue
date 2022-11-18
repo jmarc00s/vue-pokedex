@@ -10,13 +10,15 @@ const {
   params: { id },
 } = useRoute();
 
-const { isLoading, error, data } = useQuery('pokemonById', () =>
+const { isLoading, data } = useQuery([`pokemonById`, id], () =>
   getPokemon(id as string)
 );
 </script>
 
 <template>
   <section>
+    <div v-if="isLoading">Carregando...</div>
+
     <div v-if="data">
       <v-row>
         <v-col>
