@@ -9,7 +9,7 @@ import { RouterView } from 'vue-router';
         <RouterLink class="brand" to="/">Vue pokedex</RouterLink>
       </v-app-bar-title>
     </v-app-bar>
-    <v-main>
+    <v-main :scrollable="false">
       <v-container>
         <RouterView />
       </v-container>

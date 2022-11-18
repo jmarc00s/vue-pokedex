@@ -1,19 +1,27 @@
 <script setup lang="ts">
+import { getPokemonsPaged } from '@/core/services/pokemon';
+import { useQuery } from 'vue-query';
 import type { Pokemon } from '../interfaces/pokemon';
 import PokemonCard from './PokemonCard.vue';
 
-defineProps<{ pokemons: Pokemon[] }>();
+const { isLoading, data, error } = useQuery<Pokemon[]>('pokemons', () =>
+  getPokemonsPaged(0, 12)
+);
 </script>
 
 <template>
-  <section class="grid">
-    <PokemonCard
-      v-for="pokemon in pokemons"
-      :key="pokemon.id"
-      :pokemon="pokemon"
-      show-detail-link
-    ></PokemonCard>
-  </section>
+  <div v-if="isLoading">Carregando...</div>
+  <div v-if="error">{{ error }}</div>
+  <div v-else-if="data?.length">
+    <section class="grid">
+      <PokemonCard
+        v-for="pokemon in data"
+        :key="pokemon.id"
+        :pokemon="pokemon"
+        show-detail-link
+      ></PokemonCard>
+    </section>
+  </div>
 </template>
 
 <style scoped>
