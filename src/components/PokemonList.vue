@@ -6,10 +6,10 @@ import type { Pokemon } from '../interfaces/pokemon';
 import PokemonCard from './PokemonCard.vue';
 
 const page = ref(0);
-const size = ref(12);
+const size = ref(18);
 const pokemons = ref<Pokemon[]>([]);
 
-const { isLoading, error, refetch, isFetching } = useQuery<Pokemon[]>(
+const { isLoading, error, refetch } = useQuery<Pokemon[]>(
   ['pokemons', page.value],
   () => getPokemonsPaged(page.value, size.value),
   {

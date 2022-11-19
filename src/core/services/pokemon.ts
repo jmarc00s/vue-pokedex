@@ -22,3 +22,9 @@ export async function getPokemon(id: string): Promise<Pokemon> {
   const { data } = await axios<Pokemon>(`/pokemon/${id}`);
   return data;
 }
+
+export async function getRelatedPokemons(pokemon: Pokemon): Promise<Pokemon[]> {
+  const { id, type } = pokemon;
+  const { data } = await axios<Pokemon[]>(`/pokemon/related/${id}/${type}`);
+  return data;
+}

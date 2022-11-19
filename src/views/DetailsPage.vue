@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import PokemonCard from '@/components/PokemonCard.vue';
+import PokemonCarousel from '@/components/PokemonCarousel.vue';
 import PokemonTable from '@/components/PokemonTable.vue';
 
 import { getPokemon } from '@/core/services/pokemon';
 import { useQuery } from 'vue-query';
 import { useRoute } from 'vue-router';
 
-const {
-  params: { id },
-} = useRoute();
+const { params } = useRoute();
 
-const { isLoading, data } = useQuery([`pokemonById`, id], () =>
-  getPokemon(id as string)
+const { isLoading, data } = useQuery([`pokemonById`, params.id], () =>
+  getPokemon(params.id as string)
 );
 </script>
 
@@ -30,6 +29,11 @@ const { isLoading, data } = useQuery([`pokemonById`, id], () =>
         </v-col>
         <v-col>
           <PokemonTable :pokemon="data" />
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col>
+          <PokemonCarousel :pokemon="data" />
         </v-col>
       </v-row>
     </div>
