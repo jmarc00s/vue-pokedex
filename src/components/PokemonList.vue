@@ -62,7 +62,19 @@ onBeforeUnmount(() => {
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(4, auto);
+  grid-template-columns: repeat(6, auto);
   gap: 1rem;
+}
+
+@media screen and (max-width: 960px) {
+  .grid {
+    grid-template-columns: repeat(3, auto);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(2, auto);
+  }
 }
 </style>
