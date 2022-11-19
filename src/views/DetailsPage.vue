@@ -22,7 +22,11 @@ const { isLoading, data } = useQuery([`pokemonById`, id], () =>
     <div v-if="data">
       <v-row>
         <v-col>
-          <PokemonCard :pokemon="data" :show-detail-link="false" />
+          <PokemonCard
+            :pokemon="data"
+            :show-detail-link="false"
+            image-size="300"
+          />
         </v-col>
         <v-col>
           <PokemonTable :pokemon="data" />

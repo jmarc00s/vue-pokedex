@@ -2,9 +2,12 @@
 import type { Pokemon } from '@/interfaces/pokemon';
 import { useRouter } from 'vue-router';
 
+type ImageSize = '200' | '300' | '400';
+
 defineProps<{
   pokemon: Pokemon;
   showDetailLink: boolean;
+  imageSize?: ImageSize;
 }>();
 
 const router = useRouter();
@@ -18,7 +21,7 @@ function handleDetailClick(id: string) {
   <v-card>
     <v-img
       :src="`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`"
-      height="300"
+      :height="imageSize ? imageSize : '200'"
     ></v-img>
     <v-card-title>{{ pokemon.name }}</v-card-title>
     <v-card-subtitle>{{ pokemon.type }}</v-card-subtitle>
