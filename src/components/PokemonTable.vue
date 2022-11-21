@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { Pokemon } from '@/interfaces/pokemon';
+import { computed, ref } from 'vue';
 
 type PokemonTableProps = {
   pokemon: Pokemon;
@@ -12,32 +13,34 @@ type PokemonTableColumnType = {
 
 const props = defineProps<PokemonTableProps>();
 
-const columns: PokemonTableColumnType[] = [
-  {
-    title: 'Ataque',
-    value: props.pokemon.attack,
-  },
-  {
-    title: 'Defesa',
-    value: props.pokemon.defense,
-  },
-  {
-    title: 'HP',
-    value: props.pokemon.hp,
-  },
-  {
-    title: 'Velocidade',
-    value: props.pokemon.speed,
-  },
-  {
-    title: 'SP ataque',
-    value: props.pokemon.special_attack,
-  },
-  {
-    title: 'SP defesa',
-    value: props.pokemon.special_defense,
-  },
-];
+const columns = computed<PokemonTableColumnType[]>(() => {
+  return [
+    {
+      title: 'Ataque',
+      value: props.pokemon.attack,
+    },
+    {
+      title: 'Defesa',
+      value: props.pokemon.defense,
+    },
+    {
+      title: 'HP',
+      value: props.pokemon.hp,
+    },
+    {
+      title: 'Velocidade',
+      value: props.pokemon.speed,
+    },
+    {
+      title: 'SP ataque',
+      value: props.pokemon.special_attack,
+    },
+    {
+      title: 'SP defesa',
+      value: props.pokemon.special_defense,
+    },
+  ];
+});
 </script>
 
 <template>

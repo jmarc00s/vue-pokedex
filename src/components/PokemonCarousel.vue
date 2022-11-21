@@ -3,15 +3,22 @@ import type { Pokemon } from '@/interfaces/pokemon';
 import { useQuery } from 'vue-query';
 import { getRelatedPokemons } from '@/core/services/pokemon';
 import PokemonCard from './PokemonCard.vue';
-import { ref } from 'vue';
+import { watch } from 'vue';
 
 type PokemonCarouselProps = {
-  pokemon: Pokemon;
+  pokemonId: string;
 };
+
 const props = defineProps<PokemonCarouselProps>();
 
-const { data: pokemons } = useQuery(['pokemonCarousel', props.pokemon.id], () =>
-  getRelatedPokemons(props.pokemon)
+const { data: pokemons, refetch } = useQuery(
+  ['pokemonCarousel', props.pokemonId],
+  () => getRelatedPokemons(props.pokemonId)
+);
+
+watch(
+  () => props.pokemonId,
+  async () => refetch.value()
 );
 </script>
 
@@ -34,6 +41,6 @@ const { data: pokemons } = useQuery(['pokemonCarousel', props.pokemon.id], () =>
   display: grid;
   grid-template-columns: repeat(5, auto);
   gap: 1rem;
-  padding: 2rem 5rem;
+  padding: 2rem;
 }
 </style>

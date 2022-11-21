@@ -1,16 +1,33 @@
 <script setup lang="ts">
-import PokemonCard from '@/components/PokemonCard.vue';
-import PokemonCarousel from '@/components/PokemonCarousel.vue';
-import PokemonTable from '@/components/PokemonTable.vue';
-
-import { getPokemon } from '@/core/services/pokemon';
+import { ref, watch } from 'vue';
 import { useQuery } from 'vue-query';
 import { useRoute } from 'vue-router';
 
-const { params } = useRoute();
+import PokemonCard from '@/components/PokemonCard.vue';
+import PokemonCarousel from '@/components/PokemonCarousel.vue';
+import PokemonTable from '@/components/PokemonTable.vue';
+import { getPokemon } from '@/core/services/pokemon';
+import type { Pokemon } from '@/interfaces/pokemon';
 
-const { isLoading, data } = useQuery([`pokemonById`, params.id], () =>
-  getPokemon(params.id as string)
+const route = useRoute();
+
+const pokemon = ref<Pokemon>({} as Pokemon);
+
+const { isLoading, data, refetch } = useQuery(
+  [`pokemonById`, route.params.id],
+  () => getPokemon(route.params.id as string),
+  {
+    onSuccess(data: Pokemon) {
+      pokemon.value = data;
+    },
+  }
+);
+
+watch(
+  () => route.params.id,
+  async () => {
+    refetch.value();
+  }
 );
 </script>
 
@@ -22,18 +39,18 @@ const { isLoading, data } = useQuery([`pokemonById`, params.id], () =>
       <v-row>
         <v-col>
           <PokemonCard
-            :pokemon="data"
+            :pokemon="pokemon"
             :show-detail-link="false"
             image-size="300"
           />
         </v-col>
         <v-col>
-          <PokemonTable :pokemon="data" />
+          <PokemonTable :pokemon="pokemon" />
         </v-col>
       </v-row>
       <v-row>
         <v-col>
-          <PokemonCarousel :pokemon="data" />
+          <PokemonCarousel :pokemon-id="pokemon.id" />
         </v-col>
       </v-row>
     </div>
