@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { getPokemonsPaged } from '@/core/services/pokemon';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 import { useQuery } from 'vue-query';
-import type { Pokemon } from '../interfaces/pokemon';
-import PokemonCard from './PokemonCard.vue';
+
+import { getPokemonsPaged } from '@/core/services/pokemon';
+import type { Pokemon } from '@/interfaces/pokemon';
+import PokemonCard from '@/components/PokemonCard.vue';
 
 const page = ref(0);
 const size = ref(18);
