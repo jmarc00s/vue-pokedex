@@ -8,4 +8,15 @@ export const en = {
   pokemonSearch: {
     search: 'Search',
   },
+  pokemonTable: {
+    columns: {
+      attack: 'Attack',
+      defense: 'Defense',
+      hp: 'HP',
+      speed: 'Speed',
+      sp_attack: 'Special attack',
+      sp_defense: 'Special defense',
+    },
+  },
+  related: 'Related pokémons',
 };

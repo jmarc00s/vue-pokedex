@@ -24,7 +24,7 @@ watch(
 
 <template>
   <v-card>
-    <v-card-title>Pokémons relacionados</v-card-title>
+    <v-card-title>{{ $t('related') }}</v-card-title>
     <div class="grid">
       <PokemonCard
         v-for="pokemon in pokemons"

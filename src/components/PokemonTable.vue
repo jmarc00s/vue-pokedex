@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { Pokemon } from '@/interfaces/pokemon';
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
+import { useI18n } from 'vue-i18n';
 
 type PokemonTableProps = {
   pokemon: Pokemon;
@@ -13,30 +14,32 @@ type PokemonTableColumnType = {
 
 const props = defineProps<PokemonTableProps>();
 
+const { t } = useI18n();
+
 const columns = computed<PokemonTableColumnType[]>(() => {
   return [
     {
-      title: 'Ataque',
+      title: t('pokemonTable.columns.attack'),
       value: props.pokemon.attack,
     },
     {
-      title: 'Defesa',
+      title: t('pokemonTable.columns.defense'),
       value: props.pokemon.defense,
     },
     {
-      title: 'HP',
+      title: t('pokemonTable.columns.hp'),
       value: props.pokemon.hp,
     },
     {
-      title: 'Velocidade',
+      title: t('pokemonTable.columns.speed'),
       value: props.pokemon.speed,
     },
     {
-      title: 'SP ataque',
+      title: t('pokemonTable.columns.sp_attack'),
       value: props.pokemon.special_attack,
     },
     {
-      title: 'SP defesa',
+      title: t('pokemonTable.columns.sp_defense'),
       value: props.pokemon.special_defense,
     },
   ];
@@ -45,7 +48,7 @@ const columns = computed<PokemonTableColumnType[]>(() => {
 
 <template>
   <v-card class="h-100">
-    <v-card-title>Detalhes do pokémon</v-card-title>
+    <v-card-title>{{ $t('detailsPage.title') }}</v-card-title>
     <v-table>
       <thead>
         <tr>
