@@ -32,7 +32,7 @@ function handleDetailClick(id: string) {
         variant="tonal"
         @click="handleDetailClick(pokemon.id)"
       >
-        Ver detalhes
+        {{ $t('pokemonCard.details') }}
       </v-btn>
     </v-card-actions>
   </v-card>

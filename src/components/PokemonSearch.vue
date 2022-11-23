@@ -16,7 +16,7 @@ const handleSearchInput = ({ target }: any) => {
 <template>
   <form class="d-flex align-center" @submit.prevent="">
     <v-text-field
-      label="Pesquisar"
+      :label="$t('pokemonSearch.search')"
       :value="search"
       @input="handleSearchInput"
       variant="underlined"
