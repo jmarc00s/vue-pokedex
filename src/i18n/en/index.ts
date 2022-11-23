@@ -2,6 +2,9 @@ export const en = {
   homePage: {
     welcome: 'Welcome to Vue Pókedex',
   },
+  detailsPage: {
+    title: 'Pokémon details',
+  },
   pokemonCard: {
     details: 'See more',
   },

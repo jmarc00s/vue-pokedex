@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router';
+import TranslationSelect from '@/components/TranslationSelect.vue';
 </script>
 
 <template>
@@ -8,6 +9,9 @@ import { RouterView } from 'vue-router';
       <v-app-bar-title>
         <RouterLink class="brand" to="/">Vue pokedex</RouterLink>
       </v-app-bar-title>
+      <template v-slot:append>
+        <TranslationSelect />
+      </template>
     </v-app-bar>
     <v-main :scrollable="false">
       <v-container>
