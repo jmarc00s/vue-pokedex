@@ -7,8 +7,6 @@ const store = useStore();
 const search = ref('');
 const { debounce } = useDebounce();
 
-const handleSubmit = () => store.setFilter(search.value);
-
 const handleSearchInput = ({ target }: any) => {
   search.value = target.value;
   debounce(() => store.setFilter(search.value));
@@ -16,11 +14,7 @@ const handleSearchInput = ({ target }: any) => {
 </script>
 
 <template>
-  <form
-    class="d-flex align-center"
-    @submit.prevent="handleSubmit"
-    :on-keydown.enter="handleSubmit"
-  >
+  <form class="d-flex align-center" @submit.prevent="">
     <v-text-field
       label="Pesquisar"
       :value="search"
