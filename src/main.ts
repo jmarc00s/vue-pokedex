@@ -12,6 +12,7 @@ import * as components from 'vuetify/components';
 import * as directives from 'vuetify/directives';
 
 import axios from 'axios';
+import { i18n } from './i18n';
 
 axios.defaults.baseURL = 'http://localhost:3000';
 
@@ -32,6 +33,7 @@ const vueQueryPluginOptions: VueQueryPluginOptions = {
 
 const app = createApp(App);
 
+app.use(i18n);
 app.use(createPinia());
 app.use(router);
 app.use(vuetify);
