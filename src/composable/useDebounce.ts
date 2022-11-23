@@ -1,13 +1,13 @@
 import { ref } from 'vue';
 
 export function useDebounce() {
-  function createDebounce(fn: Function, delay: number = 500) {
-    const timeout = ref<any>(null);
+  const timeout = ref<any>(undefined);
 
+  function createDebounce(fn: Function, delay: number = 500) {
     clearTimeout(timeout.value);
     timeout.value = setTimeout(() => {
       fn();
-    }, delay || 500);
+    }, delay);
   }
 
   return { debounce: createDebounce };
