@@ -18,6 +18,14 @@ export async function getPokemonsPaged(
   return data;
 }
 
+export async function getPokemonsPagedWithFilter(
+  filter: string
+): Promise<Pokemon[]> {
+  const { data } = await axios<Pokemon[]>(`/pokemons/filter?filter=${filter}`);
+
+  return data;
+}
+
 export async function getPokemon(id: string): Promise<Pokemon> {
   const { data } = await axios<Pokemon>(`/pokemon/${id}`);
   return data;

@@ -6,10 +6,7 @@ const store = useStore();
 
 const search = ref('');
 
-const handleSubmit = () => {
-  store.setFilter(search.value);
-  search.value = '';
-};
+const handleSubmit = () => store.setFilter(search.value);
 </script>
 
 <template>

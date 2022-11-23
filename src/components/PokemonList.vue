@@ -1,14 +1,19 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import { useQuery } from 'vue-query';
 
-import { getPokemonsPaged } from '@/core/services/pokemon';
+import {
+  getPokemonsPaged,
+  getPokemonsPagedWithFilter,
+} from '@/core/services/pokemon';
 import type { Pokemon } from '@/interfaces/pokemon';
 import PokemonCard from '@/components/PokemonCard.vue';
+import { useStore } from '@/store';
 
 const page = ref(0);
 const size = ref(18);
 const pokemons = ref<Pokemon[]>([]);
+const store = useStore();
 
 const { isLoading, error, refetch } = useQuery<Pokemon[]>(
   ['pokemons', page.value],
@@ -16,6 +21,17 @@ const { isLoading, error, refetch } = useQuery<Pokemon[]>(
   {
     onSuccess: (data: Pokemon[]): void => {
       pokemons.value.push(...data);
+    },
+  }
+);
+
+const { refetch: fetchWithFilter, isFetching } = useQuery<Pokemon[]>(
+  ['pokemons-filtered', store.filter],
+  () => getPokemonsPagedWithFilter(store.filter),
+  {
+    enabled: false,
+    onSuccess: (data: Pokemon[]): void => {
+      pokemons.value = [...data];
     },
   }
 );
@@ -30,6 +46,13 @@ const handleScroll = async () => {
   }
 };
 
+watch(
+  () => store.filter,
+  () => {
+    fetchWithFilter.value();
+  }
+);
+
 onMounted(() => {
   window.addEventListener('scroll', handleScroll);
   window.addEventListener('wheel', handleScroll);
@@ -42,7 +65,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div v-if="isLoading">Carregando...</div>
+  <div v-if="isLoading || isFetching">Carregando...</div>
   <div v-if="error">{{ error }}</div>
   <div v-else-if="pokemons?.length">
     <section class="grid">
