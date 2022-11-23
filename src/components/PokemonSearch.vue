@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useStore } from '@/store';
-import { ref, watch } from 'vue';
+import { ref } from 'vue';
 import { useDebounce } from '@/composable/useDebounce';
 
 const store = useStore();
