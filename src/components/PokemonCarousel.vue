@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Pokemon } from '@/interfaces/pokemon';
 import { useQuery } from 'vue-query';
 import { getRelatedPokemons } from '@/core/services/pokemon';
 import PokemonCard from './PokemonCard.vue';
